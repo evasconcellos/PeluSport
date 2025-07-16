@@ -1,12 +1,15 @@
-Proyecto Tienda PeluSport para Coderhouse
+Proyecto final "Tienda PeluSport" para el curso de Python Flex en Coderhouse comisión 78110
 
 Crear entorno virtual e instalar Django en Powershell:
 
 python -m venv venv 
 .\venv\Scripts\activate 
 pip install django
+python -m pip install Pillow
 
 Migraciones: python manage.py migrate
+
+Cargar productos estáticos: python manage.py cargar_productos
 
 Correr servidor: python manage.py runserver
 
@@ -18,7 +21,7 @@ Funcionalidades:
 -Inicio de sesión
 -Ver productos en home
 -Ver detalle de productos del home
--Buscada de productos
+-Busqueda de productos
 -Agregar opinión sobre el producto
 -Agregar producto al carrito
 -Eliminar producto del carrito
@@ -44,3 +47,4 @@ Entrar a: http://127.0.0.1:8000/admin e ingresar con el user y contraseña cread
 
 - Logueandose con un superuser a la web se puede crear, editar y eliminar productos sin necesidad de entrar /admin, con iniciar sesion a la web se desplegan las opciones.
 
+Video demostración de funcionalidades de la web: https://youtu.be/LOUO7Lu3xQ0
