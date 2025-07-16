@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ producto.nombre }}</h2>
+<img src="{{ producto.imagen.url }}" class="img-fluid mb-3">
+<p>{{ producto.descripcion }}</p>
+<p><strong>Precio:</strong> ${{ producto.precio }}</p>
+<a href="{% url 'agregar_al_carrito' producto.id %}" class="btn btn-success">Agregar al carrito</a>
+
+
+
+{% if user.is_authenticated %}
+ <h5>Agregar opinión sobre este producto</h5>
+<form method="post">
+    {% csrf_token %}
+    <textarea name="texto" class="form-control" rows="3"></textarea>
+    <button type="submit" class="btn btn-sm btn-primary mt-2">Enviar</button>
+</form>
+
+<h5 class="mt-4">Opiniones:</h5>
+{% for review in producto.review_set.all %}
+    <div class="border rounded p-2 my-2">
+        <strong>{{ review.usuario.username }}</strong> - {{ review.fecha|date:"d/m/Y" }}<br>
+        {{ review.texto }}
+    </div>
+{% empty %}
+    <p>Este producto no tiene opiniones aún.</p>
+{% endfor %}
+{% else %}
+  <p><a href="{% url 'login' %}">Inicia sesión</a> para dejar una opinión.</p>
+{% endif %}
+{% endblock %}
+

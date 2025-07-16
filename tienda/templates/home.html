@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Productos</h1>
+<div class="row">
+  {% for producto in productos %}
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <img src="{{ producto.imagen.url }}" class="img-fluid" alt="{{ producto.nombre }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">${{ producto.precio }}</p>
+          <a href="{% url 'detalle_producto' producto.id %}" class="btn btn-primary">Ver detalle</a>
+          {% if user.is_superuser %}
+          <a href="{% url 'editar_producto' producto.pk %}" class="btn btn-warning">Editar</a>
+          <a href="{% url 'eliminar_producto' producto.pk %}" class="btn btn-danger">Eliminar</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

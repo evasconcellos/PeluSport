@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Resultados para "{{ query }}"</h2>
+<div class="row">
+  {% for producto in productos %}
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <img src="{{ producto.imagen.url }}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <a href="{% url 'detalle_producto' producto.id %}" class="btn btn-primary">Ver detalle</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>No se encontraron productos.</p>
+  {% endfor %}
+</div>
+{% endblock %}
+

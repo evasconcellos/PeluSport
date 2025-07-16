@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<h2>Editar Perfil</h2>
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ user_form.as_p }}
+  {{ perfil_form.as_p }}
+  <a href="{% url 'cambiar_password' %}" class="btn btn-warning">Cambiar contraseña</a>
+  <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+</form>
+
+{% if user.perfil.avatar %}
+  <h5 class="mt-4">Vista previa del avatar actual:</h5>
+  <img src="{{ user.perfil.avatar.url }}" alt="Avatar actual" width="120" class="rounded">
+{% endif %}
+{% endblock %}
